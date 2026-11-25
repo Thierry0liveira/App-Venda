@@ -1,0 +1,66 @@
+/* Tokens de cor: --c1/--c2 são trocadas pelo JS conforme a escolha do comerciante; --on1/--on2 = cor do texto sobre elas. */
+:root{--c1:#1f6f5c;--c2:#e8a33d;--on1:#fff;--on2:#16161a;--bg:#f3f5f4;--ink:#17191a;--mut:#62696b;--ln:#dde2e0;--t1:color-mix(in srgb,var(--c1) 10%,#fff)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+/* Tipografia: fontes do sistema (funcionam offline) com títulos compactos e pesados. */
+h1,h2,h3{font-family:"Avenir Next","Segoe UI Variable Display","Segoe UI",system-ui,sans-serif;letter-spacing:-.025em}
+h1{font-size:clamp(2.6rem,9vw,5.2rem);line-height:.98;margin:0 0 .35em;font-weight:800}
+h2{font-size:1.6rem;margin:.1em 0 .5em}h3{margin:0 0 .8em;font-size:1.05rem}
+em{color:var(--mut);font-style:normal;font-weight:400}
+.sub{color:var(--mut);margin:-.3em 0 1.2em}
+/* Tela de boas-vindas (e de erro): bloco cheio com a cor principal. */
+.hero{min-height:100svh;display:flex;align-items:flex-end;padding:clamp(24px,6vw,72px);background:var(--c1);color:var(--on1)}
+.hero-in{max-width:760px}.hero p{font-size:1.2rem;max-width:34em;opacity:.85;margin:0 0 32px}
+.hero .btn{background:var(--c2);color:var(--on2)}
+.pts{display:flex;flex-wrap:wrap;gap:6px 24px;padding:0;margin:36px 0 0;list-style:none;opacity:.8;font-size:.95rem}
+/* Cabeçalho fixo com logo e nome do estabelecimento. */
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 20px;background:var(--c1);color:var(--on1);position:sticky;top:0;z-index:5}
+.bd{display:flex;align-items:center;gap:12px;font-size:1.05rem;min-width:0}.bd b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.logo{width:40px;height:40px;border-radius:10px;object-fit:contain;background:#fff;display:grid;place-items:center;font-weight:800;color:var(--c1);flex:none}
+.wrap{max-width:720px;margin:0 auto;padding:28px 16px 56px}
+/* Cartões e formulários. */
+.card{background:#fff;border:1px solid var(--ln);border-radius:14px;padding:20px;margin-bottom:16px}
+.center{text-align:center}.center .logo{width:72px;height:72px;margin:8px auto;font-size:2rem;border:1px solid var(--ln)}
+.fld{display:block;margin-bottom:16px}.fld>span{display:block;font-weight:600;font-size:.9rem;margin-bottom:6px}
+/* Campos de formulário e estado de foco visível. */
+input,textarea{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--ln);border-radius:10px;background:#fff;color:inherit;transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus,button:focus-visible,.btn:focus-within{outline:0;border-color:var(--c1);box-shadow:0 0 0 4px var(--t1),0 0 0 2px var(--c1)}
+input[type=color]{padding:3px;height:48px;cursor:pointer}input[type=checkbox]{width:28px;height:28px;accent-color:var(--c1)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}.row{display:flex;gap:10px}
+/* Botões (principal, ghost, alt, link) e opções em forma de chip. */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border:0;border-radius:10px;background:var(--c1);color:var(--on1);font:inherit;font-weight:600;cursor:pointer;transition:transform .15s,filter .2s}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.97)}.btn.lg{padding:16px 30px;font-size:1.05rem}.btn.sm{padding:8px 14px}
+.btn.ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}.top .ghost{color:var(--on1)}
+.btn.alt{background:var(--c2);color:var(--on2)}.btn.link{background:none;color:var(--c1);padding:6px 8px}.btn.dng{color:#b3261e}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}.card .chips{margin:0}
+.chip{padding:9px 16px;border-radius:99px;border:1.5px solid var(--ln);background:#fff;font:inherit;cursor:pointer;transition:background .2s,color .2s}
+.chip.on{background:var(--c1);border-color:var(--c1);color:var(--on1)}
+/* Indicador de progresso das etapas do assistente. */
+.steps{display:flex;gap:6px;list-style:none;padding:0;margin:0 0 28px}
+.steps li{flex:1;font-size:.8rem;color:var(--mut)}.steps li::before{content:"";display:block;height:4px;border-radius:4px;background:var(--ln);margin-bottom:6px;transition:background .3s}
+.steps .on,.steps .done{color:var(--ink)}.steps .on::before,.steps .done::before{background:var(--c1)}
+.nav{display:flex;justify-content:space-between;margin-top:24px}.nav .ghost{color:var(--ink)}
+/* Lista do catálogo (em telas estreitas o preço passa para a direita). */
+.list{list-style:none;margin:0;padding:0}.list li{display:grid;grid-template-columns:1fr auto auto auto;align-items:center;gap:4px 8px;padding:12px 0;border-top:1px solid var(--ln)}
+.list li:first-child{border-top:0}.list small{display:block;color:var(--mut)}.list .off{opacity:.55}
+@media(max-width:520px){.list li{grid-template-columns:1fr auto}.list strong{grid-column:2;grid-row:1}}
+.logoPick{display:flex;align-items:center;gap:16px}.logoPick .logo{width:64px;height:64px;border:1px solid var(--ln);font-size:1.6rem}.logoPick small{display:block;color:var(--mut)}
+.prev{border:1px solid var(--ln);border-radius:12px;overflow:hidden}.pv-h{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--c1);color:var(--on1)}
+.pv-b{display:flex;gap:10px;padding:14px}.pv-b .btn{cursor:default}
+.stats{display:flex;justify-content:center;gap:32px;margin-top:16px}.stats div{color:var(--mut)}.stats b{display:block;font-size:1.8rem;color:var(--ink)}
+.err{color:#b3261e;display:block;margin-top:4px;font-size:.85rem}.empty,.note{color:var(--mut);text-align:center}
+/* Mensagem de feedback (toast). */
+#toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:10px;opacity:0;pointer-events:none;transition:.25s;max-width:90vw}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+/* Animação de entrada das telas (desligada para quem prefere menos movimento). */
+.view{animation:in .35s ease-out}@keyframes in{from{opacity:0;transform:translateY(8px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Comanda: botões de quantidade, total e histórico expansível. */
+.list li.prd{grid-template-columns:1fr auto}.qty{display:flex;align-items:center;gap:10px}.qty b{min-width:1.5em;text-align:center}
+.qty .chip{width:40px;height:40px;padding:0;font-size:1.2rem}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin:8px 0 16px}.total strong{font-size:1.8rem}
+summary.total{margin:0;cursor:pointer}details[open] summary.total{margin-bottom:12px}.blk{display:block;color:var(--mut)}
+
+/* Aviso de backup atrasado e botões em várias linhas no celular. */
+.warn{background:#fff3d1;color:#7a4f00;border-radius:10px;padding:10px 14px}.row{flex-wrap:wrap}
